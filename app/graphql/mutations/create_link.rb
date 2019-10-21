@@ -10,7 +10,7 @@ module Mutations
     type Types::LinkType
 
     # Here the resolver to the mutation
-    def resolver(description, url)
+    def resolve(description: nil, url: nil)
       Link.create!(
         description: description,
         url: url

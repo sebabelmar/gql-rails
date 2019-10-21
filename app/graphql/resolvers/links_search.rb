@@ -1,5 +1,7 @@
 require 'search_object/plugin/graphql'
 
+
+# TODO but not required LEARN WTF is going on here...
 class Resolvers::LinksSearch
   include SearchObject.module(:graphql)
   

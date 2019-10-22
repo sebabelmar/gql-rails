@@ -1,3 +1,30 @@
+=begin
+mutation {
+  signinUser(
+    email: {
+      email: "seba@seba.com"
+      password: "123456"
+    }
+  ){
+    token
+    user {
+      id
+    }
+  }
+}
+
+{
+  "data": {
+    "signinUser": {
+      "token": "i0D2Qch3Coehr59SWccYK8yNpA==--puTYh/LIojK/B6G6--hOMLaBuBn///gZ1ffPTeyA==",
+      "user": {
+        "id": "1"
+      }
+    }
+  }
+}
+=end
+
 module Mutations
   class SignInUser < BaseMutation
 

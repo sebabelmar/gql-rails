@@ -1,3 +1,32 @@
+=begin
+mutation {
+  createUser(
+      name: "Laura", 
+      authProvider: { 
+        email: { 
+          email: "laura@laura.com", 
+          password: "123456"
+        }
+      }
+    )
+  {
+    id
+    name
+  }
+}
+
+{
+  "data": {
+    "createUser": {
+      "id": "2",
+      "name": "Laura"
+    }
+  }
+}
+  
+=end
+
+
 module Mutations
   class CreateUser < BaseMutation
 
@@ -16,6 +45,8 @@ module Mutations
         email: auth_provider&.[](:email)&.[](:email),
         password: auth_provider&.[](:email)&.[](:password)
       )
+    rescue ActiveRecord::RecordInvalid => e
+      GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
     end
   end
 end

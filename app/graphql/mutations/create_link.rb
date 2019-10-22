@@ -1,3 +1,35 @@
+=begin
+mutation {
+  createLink(
+    url: "masonbottle.com",
+    description: "bessssi tops"
+  ){
+    id
+    url
+    postedBy{
+      id
+      name
+      email
+    }
+  }
+}
+
+{
+  "data": {
+    "createLink": {
+      "id": "8",
+      "url": "masonbottle.com",
+      "postedBy": {
+        "id": "1",
+        "name": "seba belmar",
+        "email": "seba@seba.com"
+      }
+    }
+  }
+}
+  
+=end
+
 module Mutations
   class CreateLink < BaseMutation
 

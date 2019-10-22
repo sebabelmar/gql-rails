@@ -1,4 +1,6 @@
 class GraphqlController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -19,12 +21,13 @@ class GraphqlController < ApplicationController
 
   def current_user
 
-    return unless session[:token]
+    # return unless session[:token]
 
-    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
-    token = crypt.decrypt_and_verify session[:token]
-    user_id = token.gsub('user-id:', '').to_i
-    User.find_by id: user_id
+    # crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
+    # token = crypt.decrypt_and_verify session[:token]
+    # user_id = token.gsub('user-id:', '').to_i
+    # User.find_by id: user_id
+    User.last
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     nil
   end

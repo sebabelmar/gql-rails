@@ -39,7 +39,7 @@ module Types
     # Queries are represented as fields
     # all_links is automatically camelcased to allLinks
     # field :all_links, [LinkType], null: false
-    field :all_links, [LinkType], function: Resolvers::LinksSearch
+    field :search, [LinkType], function: Resolvers::LinksSearch
     
     # This is the resolever method, and its invoked when allLinks is call
     # its return value is passed down to the next level if any as breth first
